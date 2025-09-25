@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Limelight';
+  src: url('/assets/fonts/Limelight-Regular.ttf') format('truetype');
+}
+nav {
+    background-color: black;
+    height: 75px;
+    border-radius: 5px;
+    color: aliceblue;
+    font-size: 30px;
+    font-family: "Limelight", sans-serif;
+    
+    display: flex;
+    align-items: center;        /* vertical centering */
+    justify-content: left;    /* horizontal centering */
+    
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-section {
+    width: 175px;
+    background-color: rgb(183, 183, 183);
+    border-radius: 5px;
+}
+
+.right-section {
+    flex: 1;
+    background-color: rgb(161, 160, 160);
+}
+
+
+.nav-container {
+    display: flex;
+    flex-direction: row;         /* Side by side, not column */
+    justify-content: flex-start; /* Push to left */
+    align-items: center;         /* Center vertically */
+    height: 75px;
+    background-color: black;
+    color: aliceblue;
+    padding: 0 20px;            /* Add some padding */
+}
+
+.left-navsection {
+  width: 175px;
+    
+}
+
+.addexpense-navsection {
+   
+}
