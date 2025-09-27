@@ -3,7 +3,7 @@
   Expenses
   </div>
 
-  <div class="addexpense-navsection" (click)="test()" >
+  <div class="addexpense-navsection" (click)="addForm()" >
     Add Expense
     
   </div>
@@ -16,44 +16,51 @@
   <div class="left-section">
     <h3>Catagories</h3>
     <ul>
-      <li *ngFor="let cat of categories" (click)="selectCategory(cat)">
+      <li class="category-list" *ngFor="let cat of categories" (click)="selectCategory(cat)">
         {{cat}}
       </li>
     </ul>
   </div>
 
-  <div class="right-section">
+  <div class="middle-section">
     <div *ngIf="showAddForm">
       <h3>Add Form</h3>
 
-      <div>
-        <label>Amount:</label>
-        <input type="number" [(ngModel)]="newExpense.amount"  placeholder="$0.00">
+      <div class="form-row">
+        <label class="form-label">Purchase:</label>
+        <input class="form-input" type="text" [(ngModel)]="newExpense.name"  placeholder="What was Purchased">
         
       </div>
 
-      <div>
-        <label>Date:</label>
-        <input type="date" [(ngModel)]="newExpense.date">
+
+      <div class="form-row">
+        <label class="form-label">Amount:</label>
+        <input class="form-input" type="number" [(ngModel)]="newExpense.amount"  placeholder="$0.00">
+        
       </div>
 
-      <div>
-        <label>Category</label>
-        <select  [(ngModel)]="newExpense.category">
+      <div class="form-row">
+        <label class="form-label">Date:</label>
+        <input class="form-input" type="date" [(ngModel)]="newExpense.date">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Category</label>
+        <select class="form-input"  [(ngModel)]="newExpense.category">
           <option *ngFor="let item of categoryOptions()">
             {{item}}
           </option>
         </select>
       </div>
       
-      <div>
-        <label>Description</label>
-        <input type="text" [(ngModel)]="newExpense.description" placeholder="Optional">
+      <div class="form-row">
+        <label class="form-label">Description</label>
+        <input class="form-input" type="text" [(ngModel)]="newExpense.description" placeholder="Optional">
       </div>
 
       <div>
         <button (click)="addExpense()">Add</button>
-        <button>Cancel</button>
+        <button (click)="clearButton()">Cancel</button>
       </div>
 
 
@@ -65,19 +72,37 @@
       <h3>{{activecategory}}</h3>
       
       <ul *ngIf="activecategory == 'All Expenses'">
-        <li *ngFor="let item of expenses">
-          Amount: {{'$' + item.amount}}
+        <li class="category-list" style="list-style: none;" *ngFor="let item of expenses" (click)="itemDescription(item.itemid)">
+          Item: {{item.name}} - Amount: ${{item.amount}}
         </li>
       </ul>
       
       <ul *ngIf="activecategory != 'All Categories'">
-        <li *ngFor="let item of filterCategory(activecategory)">
-          Amount: {{'$' + item.amount}}
+        <li class="category-list" style="list-style: none;" *ngFor="let item of filterCategory(activecategory)" (click)="itemDescription(item.itemid)">
+          Item: {{item.name}} - Amount: ${{item.amount}}
         </li>
       </ul>
     </div>
 
     
+  </div>
+
+  <div class="right-section" *ngIf="activeItem != ''">
+    <h3>Item Breakdown</h3>
+      <ul  style="list-style: none;" *ngFor="let part of findItem(activeItem)">
+        <li>
+          Date: {{part.date}}
+        </li>
+        
+        <li *ngIf="activecategory == 'All Expenses'">
+          Category: {{part.category}}
+        </li>
+
+        <li>
+          Description: {{part.description}}
+        </li>
+        
+      </ul>
 
   </div>
 

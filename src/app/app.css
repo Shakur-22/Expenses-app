@@ -27,9 +27,17 @@ nav {
     border-radius: 5px;
 }
 
+.middle-section {
+    width: 400px;
+    background-color: rgb(161, 160, 160);
+    border-radius: 5px;
+    
+}
+
 .right-section {
     flex: 1;
     background-color: rgb(161, 160, 160);
+    border-radius: 5px;
 }
 
 
@@ -52,3 +60,30 @@ nav {
 .addexpense-navsection {
    
 }
+
+
+.category-list {
+    list-style: none;
+    padding: 5px;
+}
+
+.category-list:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    width: 120px;          /* Fixed width for all labels */
+    text-align: right;     /* Right-align text */
+    padding-right: 10px;   /* Space between label and input */
+}
+
+.form-input {
+    width: 150px;              /* Input takes remaining space */
+}
+
