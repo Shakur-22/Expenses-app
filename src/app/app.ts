@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { AddExpenseFormComponent } from './add-expense-form/add-expense-form';
 
 interface Expense {
   name: string;
@@ -15,7 +15,7 @@ interface Expense {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, FormsModule],
+  imports: [RouterOutlet, CommonModule, FormsModule, AddExpenseFormComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -28,14 +28,6 @@ activeItem = ''
 
 
 
-newExpense = {
-  name: '',
-  amount: 0,
-  date: "",
-  category: '',
-  description: '',
-  itemid: ''
-}
 
 expenses: Expense[] = [
   {name: 'Starbucks Coffee', amount: 5.75, date: '2024-01-15', category: 'Food', description: 'Morning latte', itemid: 'A4X9K'},
@@ -83,30 +75,7 @@ categoryOptions() {
   return this.categories.filter(item => item != 'All Expenses')
 }
 
-addExpense() {
-const newExpense = {
-  name: this.newExpense.name,
-  amount: this.newExpense.amount,
-  date: this.newExpense.date,
-  category: this.newExpense.category,
-  description: this.newExpense.description,
-  itemid: this.generateId()
-}
-this.expenses.push(newExpense)
-  this.newExpense = {
-  name: '',
-  amount: 0,
-  date: "",
-  category: '',
-  description: '',
-  itemid: ''
-}
-}
 
-
-clearButton() {
-  this.newExpense = {name: '', amount: 0, date: '', category: '', description: '', itemid: ''}
-}
 
 filterCategory(cat: any) {
   return this.expenses.filter(expenses => expenses.category == cat)
@@ -116,12 +85,22 @@ itemDescription(itemid: any) {
   this.activeItem = itemid
 }
 
-generateId(): string {
-  return Math.random().toString(36).substring(2, 7);
-}
+
 
 findItem(itemid: any) {
   return this.expenses.filter(expenses => expenses.itemid == itemid) 
+}
+
+onExpenseAdded(expense: Expense) {
+  this.expenses.push(expense);
+  this.showAddForm = false;
+  this.activecategory = 'All Expenses'; // Show all expenses after adding
+}
+
+// Handle when form is cancelled
+onFormCancelled() {
+  this.showAddForm = false;
+  this.activecategory = 'All Expenses';
 }
 
 }

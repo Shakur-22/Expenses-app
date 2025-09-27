@@ -87,3 +87,23 @@ nav {
     width: 150px;              /* Input takes remaining space */
 }
 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column !important;  /* Stack instead of side-by-side */
+  }
+  
+  .left-section {
+    width: 100% !important;  /* Full width on mobile */
+    margin-bottom: 10px;
+  }
+  
+  .right-section {
+    width: 100% !important;
+  }
+  
+  /* Make nav items larger for mobile */
+  .nav-container {
+    font-size: 24px !important;
+    height: 60px !important;
+  }
+}

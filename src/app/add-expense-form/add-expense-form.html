@@ -1,0 +1,44 @@
+    <div>
+      <h3>Add Form</h3>
+
+      <div class="form-row">
+        <label class="form-label">Purchase:</label>
+        <input class="form-input" type="text" [(ngModel)]="newExpense.name"  placeholder="What was Purchased">
+        
+      </div>
+
+
+      <div class="form-row">
+        <label class="form-label">Amount:</label>
+        <input class="form-input" type="number" [(ngModel)]="newExpense.amount"  placeholder="$0.00">
+        
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Date:</label>
+        <input class="form-input" type="date" [(ngModel)]="newExpense.date">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Category</label>
+        <select class="form-input"  [(ngModel)]="newExpense.category">
+          <option *ngFor="let item of categoryOptions()">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-row">
+        <label class="form-label">Description</label>
+        <input class="form-input" type="text" [(ngModel)]="newExpense.description" placeholder="Optional">
+      </div>
+
+      <div>
+        <button (click)="addExpense()">Add</button>
+        <button (click)="clearButton()">Cancel</button>
+      </div>
+
+
+
+
+    </div>
